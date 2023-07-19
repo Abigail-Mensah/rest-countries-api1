@@ -1,0 +1,134 @@
+.body {
+    width: 100%;
+    height: 100vh; /* Adjust this to your desired height */
+    background-color: #FAFAFA;
+  }
+  
+  .navbar {
+    width: 100%;
+    height: 80px;
+    position: relative;
+    background: #FFF;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06);
+    align-items: center;
+  }
+  
+  .navbar p {
+    position: absolute;
+    width: 250px;
+    height: 33px;
+    left: 80px; /* Correct the typo: Px -> px */
+    color: #111517;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    display: flex; /* Add this line to vertically center the text */
+   
+  }
+  
+  .moonImage {
+    position: absolute;
+    width: 15px;
+    height: 13.75px;
+    cursor: pointer; /* Add this line to indicate it's clickable */
+    left: 1350px;
+    top: 35px;
+  }
+  .navbar span {
+    position: absolute;
+    width: 100px;
+    height: 22px;
+    top:30px;
+    left: 1370px;
+    color: #111517;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+
+
+  }
+
+  .searchBox1 {
+    position: absolute;
+    width: 480px;
+    height: 56px;
+    top: 148px;
+    left: 80px;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.05);
+
+
+  }
+  .searchImage {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    top: 20px;
+    left: 30px;
+  }
+  .searchBox1 p {
+    position: absolute;
+    color: #848484;
+    left: 100px;
+    font-size: 14px;
+    top:4px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; /* 142.857% */
+  }
+  .searchBox2 {
+    position: absolute;
+    width: 200px;
+    height: 56px;
+    left: 1260px;
+    top:148px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.05);
+  }
+
+  .arrowImage{
+    position: absolute;
+    width: 9px;
+    height: 5.25px;
+    left: 180px;
+    top:25px;
+  }
+  .searchBox2 p {
+    width: 99px;
+    height: 20px;
+    left: 20px;
+    position: absolute;
+    color: #111517;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; 
+  }
+  .popup {
+    position: absolute;
+    width: 200px;
+    height: 174px;
+    top: 210px;
+    left: 1260px;
+    color: #111517;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px; 
+    border-radius: 5px;
+    background: #FFF;
+    box-shadow: 0px 2px 9px 0px rgba(0, 0, 0, 0.05);
+  }
+  .popup p {
+   padding-left: 20px;
+  }
+
+ 
+.girdContainer {
+
+}
