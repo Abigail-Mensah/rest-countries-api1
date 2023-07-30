@@ -1,13 +1,12 @@
 import React from 'react';
-import Dashboard from './Component/Dashboard'; // Correct import path
-import './Component/dashboard.css'; // Correct import path
+import CountryList from './component/CountryList';
 
-function App() {
+
+const App: React.FC = () => {
   return (
-    <div className="App">
-      <Dashboard />
-    </div>
+    <CountryList />
+  
   );
-}
+};
 
 export default App;
