@@ -1,0 +1,400 @@
+.country-details-container {
+  width: 100%;
+  height: 1024px;
+  background:white;
+
+
+}
+/* .navbar {
+    width: 100%;
+    height: 80px;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06); 
+} */
+
+.flag {
+  position: absolute;
+  width: 559.715px;
+  height: 483.169px;
+  left: 105px;
+  top:250px;
+}
+
+.country-text {
+  position: absolute;
+  width: 598px;
+  height: 430px;
+  flex-shrink: 0;
+  left: 850px;
+  top: 300px;
+  color: #111517;
+  background: white;
+  line-height: 15px;
+  /* overflow: auto;  */
+}
+
+.native {
+    width :200px;
+    display: flex;
+    position:absolute ;
+    left: 107px;
+    top:5px;
+}
+
+.population {
+  display: flex;
+  position:absolute ;
+  left: 90px;
+  top:41px;
+}
+.region {
+  display: flex;
+  position:absolute ;
+  left: 62px;
+  top:80px;
+}
+
+
+.subregion {
+  display: flex;
+  width: 200px;
+  position:absolute ;
+  left: 86px;
+  top:115px;
+}
+
+.capital {
+  display: flex;
+  width: 200px;
+  position:absolute ;
+  left: 55px;
+  top:150px;
+}
+
+.toplevel {
+  display: flex;
+  position:absolute ;
+  left: 142px;
+  top:6px;
+}
+
+.currencies {
+  display: flex;
+  position:absolute ;
+  width: 200px;
+  left: 85px;
+  top:41px;
+}
+
+.language {
+  display: flex;
+  position:absolute ;
+  width: 200px;
+  left: 85px;
+  top:79px;
+  /* left: 120px;
+  top:15px; */
+}
+
+h2 {
+  position: absolute;
+  font-size: 32px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: normal;
+  top: -23px;
+}
+
+.country-text1 {
+  position: absolute;
+  width: 207px;
+  height: 160px;
+  top: 45px;
+ 
+}
+
+
+
+.country-text2 {
+  position: absolute;
+   width: 250px;
+   height: 96px;
+   left: 350px;
+   top: 45px;
+  
+}
+.borders {
+  position: absolute;
+  width: 498px;
+  height: 50px;
+  top: 280px;
+  display: flex;
+  flex-wrap: wrap;
+  left: 147px;
+}
+
+
+.borders-countries {
+  position: absolute; 
+  width: 200px;  
+  top: 288px;  
+
+}
+
+.borders .border-container {
+ 
+  align-items: center;
+  padding-top: 10px;
+  padding-left: 9px;
+  margin-right: 20px;
+  width: 66px;
+  height: 28px;
+  margin-bottom: 10px;
+  border-radius: 2px;
+  border: 0px solid #979797;
+  box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.10);
+}
+
+.go-back-button {
+  position: absolute;
+  left: 110px;
+  top: 150px;
+  background: #fff;
+  color: #111517;
+  cursor: pointer;     
+}
+
+.dark-mode {
+  background-color: #202c37;
+  color: #fff;
+}
+.country-details-container.dark-mode {
+  background-color: #202c37;
+}
+
+.dark-mode .go-back-button {
+ 
+  background-image: none;
+  background-color: transparent; /* Set the background color in dark mode */
+  filter: invert(100%) brightness(1);
+}
+
+.dark-mode {
+  background: #202c37;
+  color: #fff;
+}
+
+body.dark-mode {
+  background: #202c37;
+  color: #fff;
+}
+
+.country-text.dark-mode {
+  
+  background:#202c37 ;
+  color: #fff;
+  
+}
+
+@media only screen and (min-width:320px) and (max-width:480px){
+  .country-details-container {
+    width: 100%;
+    height: 3305px;
+    background: #FAFAFA;
+  
+  
+  }
+  /* .navbar {
+      width: 100%;
+      height: 80px;
+      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06); 
+  } */
+  
+  .flag {
+    position: absolute;
+    width: 319.837px;
+    height: 275.924px;
+    left: 25px;
+    top:250px;
+  }
+  
+  .country-text {
+    position: absolute;
+    width: 319.837px;
+    height: 27.924px;
+    flex-shrink: 0;
+    left: 50px;
+    top: 600px;
+    color: #111517;
+    background: #FAFAFA;
+    line-height: 15px;
+    /* overflow: auto;  */
+  }
+  
+  .native {
+      width :200px;
+      display: flex;
+      position:absolute ;
+      left: 107px;
+      top:5px;
+  }
+  
+  .population {
+    display: flex;
+    position:absolute ;
+    left: 90px;
+    top:41px;
+  }
+  .region {
+    display: flex;
+    position:absolute ;
+    left: 62px;
+    top:80px;
+  }
+  
+  
+  .subregion {
+    display: flex;
+    width: 200px;
+    position:absolute ;
+    left: 86px;
+    top:115px;
+  }
+  
+  .capital {
+    display: flex;
+    width: 200px;
+    position:absolute ;
+    left: 55px;
+    top:150px;
+  }
+  
+  .toplevel {
+    display: flex;
+    position:absolute ;
+    left: 142px;
+    top:6px;
+  }
+  
+  .currencies {
+    display: flex;
+    position:absolute ;
+    width: 200px;
+    left: 85px;
+    top:41px;
+  }
+  
+  .language {
+    display: flex;
+    position:absolute ;
+    width: 200px;
+    left: 85px;
+    top:79px;
+    /* left: 120px;
+    top:15px; */
+  }
+  
+  h2 {
+    position: absolute;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+    top: -23px;
+  }
+  
+  .country-text1 {
+    position: absolute;
+    width: 207px;
+    height: 160px;
+    top: 45px;
+   
+  }
+  
+  
+  
+  .country-text2 {
+    position: absolute;
+     width: 250px;
+     height: 96px;
+     left: 1px;
+     top: 250px;
+    
+  }
+  .borders {
+    position: absolute;
+    width: 498px;
+    height: 50px;
+    top: 550px;
+    display: flex;
+    flex-wrap: wrap;
+    left: 1px;
+  }
+  
+  
+  .borders-countries {
+    position: absolute; 
+    width: 200px;  
+    top: 488px;  
+  
+  }
+  
+  .borders .border-container {
+   
+    align-items: center;
+    padding-top: 10px;
+    padding-left: 9px;
+    margin-right: 20px;
+    width: 66px;
+    height: 28px;
+    margin-bottom: 10px;
+    border-radius: 2px;
+    border: 0px solid #979797;
+    box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.10);
+  }
+  
+  .go-back-button {
+    position: absolute;
+    left: 110px;
+    top: 150px;
+    background: #fff;
+    color: #111517;
+    cursor: pointer;     
+  }
+  
+  .dark-mode {
+    background-color: #202c37;
+    color: #fff;
+  }
+  .country-details-container.dark-mode {
+    background-color: #202c37;
+  }
+  
+  .dark-mode .go-back-button {
+   
+    background-image: none;
+    background-color: transparent; /* Set the background color in dark mode */
+    filter: invert(100%) brightness(1);
+  }
+  
+  .dark-mode {
+    background: #202c37;
+    color: #fff;
+  }
+  
+  body.dark-mode {
+    background: #202c37;
+    color: #fff;
+  }
+  
+  .country-text.dark-mode {
+    
+    background:#202c37 ;
+    color: #fff;
+    
+  }
+
+ 
+}
+
+
+

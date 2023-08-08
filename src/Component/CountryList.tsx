@@ -1,48 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './CountryList.css'; // Import the CSS file
-import CountryDetails from './CountryDetails'; // Import the CountryDetails component
+import './CountryList.css';
+import CountryDetails, { Country } from './CountryDetails';
+import MoonImage from './moonImage.svg';
+import searchImage from './searchImage copy.svg';
 
-interface Country {
-  name: string;
-  nativeName: string;
-  population: number;
-  region: string;
-  subregion: string;
-  capital: string;
-  topLevelDomain: string[];
-  currencies: {
-    code: string;
-    name: string;
-    symbol: string;
-  }[];
-  flags: {
-    svg: string;
-    png: string;
-  };
-  borders: string[];
-  // Add other properties you want to display
-}
+
 
 const CountryList: React.FC = () => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [selectedRegion, setSelectedRegion] = useState<string>(''); // State to hold the selected region
-  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null); // State to hold the selected country
-  const [isCountrySelected, setIsCountrySelected] = useState<boolean>(false);
+  const [selectedRegion, setSelectedRegion] = useState<string>('');
+  const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
+  const [showCountryDetails, setShowCountryDetails] = useState<boolean>(false);
+  const [darkMode, setDarkMode] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCountries = async () => {
       try {
         const response = await axios.get('https://restcountries.com/v2/all');
-        console.log('API response:', response.data); // Debugging log for API response
 
         if (!response.data || response.data.length === 0) {
           throw new Error('No data received from API.');
         }
 
-        // Extracting the necessary information from the API response
         const countriesData = response.data.map((country: any) => {
           return {
             name: country.name,
@@ -53,9 +35,9 @@ const CountryList: React.FC = () => {
             capital: country.capital || 'N/A',
             topLevelDomain: country.topLevelDomain || [],
             currencies: Object.values(country.currencies || {}),
+            languages: Object.values(country.languages || {}),
             flags: country.flags,
             borders: country.borders || [],
-            // Add other properties you want to display
           };
         });
 
@@ -74,8 +56,17 @@ const CountryList: React.FC = () => {
     setSearchQuery(event.target.value);
   };
 
+  const handleSearchIconClick = () => {
+    // Perform the search action here using the searchQuery state
+    console.log('Search icon clicked! Perform search with:', searchQuery);
+  };
+
   const handleRegionSelection = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedRegion(event.target.value);
+  };
+
+  const handleToggleDarkMode = () => {
+    setDarkMode((prevDarkMode) => !prevDarkMode);
   };
 
   const filteredCountries = countries.filter(
@@ -86,67 +77,86 @@ const CountryList: React.FC = () => {
 
   const handleCountryClick = (country: Country) => {
     setSelectedCountry(country);
-    setIsCountrySelected(true);
+    setShowCountryDetails(true);
+  };
+
+  const handleGoBackToCountryList = () => {
+    setSelectedCountry(null);
+    setShowCountryDetails(false);
   };
 
   return (
-    <div>
-      <h1>Rest Countries</h1>
-
-      <input
-        type="text"
-        placeholder="Search country..."
-        value={searchQuery}
-        onChange={handleSearchChange}
-      />
-
-      <select value={selectedRegion} onChange={handleRegionSelection}>
-        <option value="">All Regions</option>
-        <option value="africa">Africa</option>
-        <option value="americas">Americas</option>
-        <option value="asia">Asia</option>
-        <option value="europe">Europe</option>
-        <option value="oceania">Oceania</option>
-      </select>
-
-      <div className="grid-container">
-        {filteredCountries.map((country, index) => (
-          <div key={index} className="grid-item" onClick={() => handleCountryClick(country)}>
-            {!isCountrySelected && (
-              <>
-                <img
-                  src={country.flags.svg}
-                  alt={`Flag of ${country.name}`}
-                  className="flag-image"
-                />
-                <h3>{country.name || 'Unknown Country'}</h3>
-              </>
-            )}
-            {isCountrySelected && selectedCountry?.name === country.name && (
-              <CountryDetails
-                name={selectedCountry.name}
-                nativeName={selectedCountry.nativeName}
-                population={selectedCountry.population}
-                region={selectedCountry.region}
-                subregion={selectedCountry.subregion}
-                capital={selectedCountry.capital}
-                topLevelDomain={selectedCountry.topLevelDomain}
-                currencies={selectedCountry.currencies}
-                flags={selectedCountry.flags}
-                borders={selectedCountry.borders}
-              />
-            )}
-            {!isCountrySelected && (
-              <>
-                <p>Capital: {country.capital}</p>
-                <p>Population: {country.population}</p>
-                <p>Region: {country.region}</p>
-              </>
-            )}
-            <hr />
-          </div>
-        ))}
+    <div className={darkMode ? 'dark-mode' : ''}>
+      <div className={`navbar ${darkMode ? 'dark-mode' : ''}`}>
+        <p>Where in the world</p>
+        <ul onClick={handleToggleDarkMode}>
+          Dark Mode
+          <img src={MoonImage} alt="Moon Icon" className={`moon-image ${darkMode ? 'dark-mode' : ''}`} />
+        </ul>
       </div>
+
+      {!showCountryDetails && (
+        <>
+          <div className="search-container">
+            <div className="search-icon" onClick={handleSearchIconClick}>
+              <img src={searchImage} alt="Search Icon" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search country..."
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className="search-input"
+            />
+          </div>
+
+          <select value={selectedRegion} onChange={handleRegionSelection} className="sort-input">
+            <option value="">Filter by Region</option>
+            <option value="africa">Africa</option>
+            <option value="americas">Americas</option>
+            <option value="asia">Asia</option>
+            <option value="europe">Europe</option>
+            <option value="oceania">Oceania</option>
+          </select>
+        </>
+      )}
+
+      {showCountryDetails ? (
+        <CountryDetails 
+          {...selectedCountry!}
+          countries={countries}
+          darkMode={darkMode}
+          goBackToCountryList={handleGoBackToCountryList} 
+        />
+      ) : (
+        <div className="grid-container">
+          {filteredCountries.map((country, index) => (
+            <div
+              key={index}
+              className={`grid-item ${darkMode ? 'dark-mode' : ''}`}
+              onClick={() => handleCountryClick(country)}
+            >
+              <img
+                src={country.flags.svg}
+                alt={`Flag of ${country.name}`}
+                className="flag-image"
+              />
+               <h3>{country.name || 'Unknown Country'}</h3>
+  <p>
+    <strong>Capital:</strong> {country.capital}
+  </p>
+  <p>
+    <strong>Population:</strong> {country.population}
+  </p>
+  <p>
+    <strong>Region:</strong> {country.region}
+  </p>
+              <hr />
+
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

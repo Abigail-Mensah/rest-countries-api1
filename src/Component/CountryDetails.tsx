@@ -1,7 +1,8 @@
 import React from 'react';
+import './CountryDetails.css';
+import BackImage from './BACK.svg'; // Correct the import for the BACK.svg image
 
-interface CountryDetailsProps {
-  // Pass the country details as props
+export interface Country {
   name: string;
   nativeName: string;
   population: number;
@@ -14,12 +15,21 @@ interface CountryDetailsProps {
     name: string;
     symbol: string;
   }[];
+  languages: {
+    name: string;
+    nativeName: string;
+  }[];
   flags: {
     svg: string;
     png: string;
   };
   borders: string[];
-  // Add other properties you want to display
+}
+
+interface CountryDetailsProps extends Country {
+  darkMode: boolean; // Add the darkMode prop
+  goBackToCountryList: () => void;
+  countries: Country[]; // Add the countries prop
 }
 
 const CountryDetails: React.FC<CountryDetailsProps> = (props) => {
@@ -32,31 +42,82 @@ const CountryDetails: React.FC<CountryDetailsProps> = (props) => {
     capital,
     topLevelDomain,
     currencies,
+    languages,
     flags,
     borders,
+    darkMode,
+    goBackToCountryList,
+    countries, // Destructure the countries prop
   } = props;
 
-  // If no country is selected, hide the content of the component
-  if (!name) {
-    return null;
-  }
+  // Helper function to map border codes to country names
+  const mapBorderCodesToNames = (borderCodes: string[]): string[] => {
+    return borderCodes.map((code) => {
+      // Find the country that matches the border code
+      const country = countries.find((country) => country.borders.includes(code));
+      return country ? country.name : code;
+    });
+  };
+
+  // Define arrow functions to conditionally apply styles based on darkMode
+  const backButtonStyle = () => ({
+    background: darkMode ? '#202c37' : '', // Set background color in dark mode
+    color: darkMode ? '#fff' : '', // Set text color in dark mode
+   
+  });
+
+  const countryTextStyle = () => ({
+    background: darkMode ? '#202c37' : '', // Set background color in dark mode
+    color: darkMode ? '#fff' : '', // Set text color in dark mode
+  });
+
+  // Define a separate CSS class for dark mode
+  const darkModeClass = darkMode ? 'dark-mode' : '';
 
   return (
-    <div>
-      <img src={flags.svg} alt={`Flag of ${name}`} className="flag-image" />
-      <h2>{name}</h2>
-      <p>Native Name: {nativeName}</p>
-      <p>Population: {population}</p>
-      <p>Region: {region}</p>
-      <p>Subregion: {subregion}</p>
-      <p>Capital: {capital}</p>
-      <p>Top Level Domain: {topLevelDomain.join(', ')}</p>
-      <p>
-        Currencies:{' '}
-        {currencies.map((currency) => `${currency.name} (${currency.code}, ${currency.symbol})`)}
-      </p>
-      <p>Borders: {borders.join(', ')}</p>
-      {/* Add other details you want to display */}
+    <div className={`country-details-container ${darkModeClass}`}>
+      {/* Use the BackImage variable for the BACK.svg image */}
+      <img
+        src={BackImage}
+        alt="Back Arrow"
+        className="go-back-button"
+        onClick={goBackToCountryList}
+        style={backButtonStyle()} // Apply the arrow function to the style attribute
+      />
+
+      <img src={flags.svg} alt={`Flag of ${name}`} className="flag" />
+      <div className="country-text" style={countryTextStyle()}>
+        <h2>{name}</h2>
+        <div className="country-text1">
+          <p> <h4> Native Name:</h4></p> <p className='native'> {nativeName}</p>
+          <p> <h4> Population:</h4> </p> <p className='population'> {population}</p>
+          <p> <h4> Region:</h4> </p> <p className='region'> {region}</p>
+          <p> <h4> Subregion:</h4></p> <p className='subregion'> {subregion}</p>
+          <p> <h4> Capital:</h4> </p> <p className='capital'> {capital}</p>
+        </div>
+        <div className="country-text2">
+           <h4> Top Level Domain:</h4> <p className='toplevel'> {topLevelDomain.join(', ')}</p>
+          
+          <h4> Currencies:</h4> <p className='currencies'> {' '} {currencies.map((currency) => `${currency.name} (${currency.code}, ${currency.symbol})`)} {' '} </p>
+          
+          <h4> Languages:</h4> <p className='language'> {languages.map((language) => `${language.name} (${language.nativeName})`)}</p>
+         </div>
+
+         <h4 className='borders-countries'>Borders Countries:</h4>
+        <p className="borders">
+         {' '}
+          {borders.length > 0 ? (
+            borders.map((border, index) => (
+              <div key={index} className="border-container">
+                {mapBorderCodesToNames([border])}
+              </div>
+            ))
+          ) : (
+            'No neighboring countries'
+          )}
+        </p>
+        {/* Add other details you want to display */}
+      </div>
     </div>
   );
 };
