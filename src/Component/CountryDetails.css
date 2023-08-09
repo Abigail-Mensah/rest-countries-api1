@@ -5,11 +5,34 @@
 
 
 }
-/* .navbar {
-    width: 100%;
-    height: 80px;
-    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06); 
-} */
+button {
+  position: absolute;
+  display: flex;
+  background-color:white;
+  color: #111517;
+  border: none;
+  padding: 10px 20px;
+  top: 130px;
+  left:110px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 6px;
+  z-index: 1;
+  cursor: pointer;
+  box-shadow: 0px 0px 7px 0px rgba(0, 0, 0, 0.29);
+}
+
+
+.dark.button-text {
+  color: #fff;
+}
+
+
+.dark.arrow-icon {
+  color: #fff; 
+}
+
 
 .flag {
   position: absolute;
@@ -91,8 +114,6 @@
   width: 200px;
   left: 85px;
   top:79px;
-  /* left: 120px;
-  top:15px; */
 }
 
 h2 {
@@ -141,7 +162,6 @@ h2 {
 }
 
 .borders .border-container {
- 
   align-items: center;
   padding-top: 10px;
   padding-left: 9px;
@@ -154,13 +174,9 @@ h2 {
   box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.10);
 }
 
-.go-back-button {
-  position: absolute;
-  left: 110px;
-  top: 150px;
-  background: #fff;
-  color: #111517;
-  cursor: pointer;     
+.dark-mode button {
+  background: #2b3840;
+  color: #fff;
 }
 
 .dark-mode {
@@ -171,12 +187,7 @@ h2 {
   background-color: #202c37;
 }
 
-.dark-mode .go-back-button {
- 
-  background-image: none;
-  background-color: transparent; /* Set the background color in dark mode */
-  filter: invert(100%) brightness(1);
-}
+
 
 .dark-mode {
   background: #202c37;
@@ -203,17 +214,18 @@ body.dark-mode {
   
   
   }
-  /* .navbar {
-      width: 100%;
-      height: 80px;
-      box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.06); 
-  } */
+ 
+  button {
+    display: flex;
+    top: 130px;
+    left: 13px;
+  }
   
   .flag {
     position: absolute;
     width: 319.837px;
     height: 275.924px;
-    left: 25px;
+    left: 17px;
     top:250px;
   }
   
@@ -222,7 +234,7 @@ body.dark-mode {
     width: 319.837px;
     height: 27.924px;
     flex-shrink: 0;
-    left: 50px;
+    left: 25px;
     top: 600px;
     color: #111517;
     background: #FAFAFA;
@@ -322,7 +334,7 @@ body.dark-mode {
   }
   .borders {
     position: absolute;
-    width: 498px;
+    width: 300px;
     height: 50px;
     top: 550px;
     display: flex;
@@ -339,7 +351,6 @@ body.dark-mode {
   }
   
   .borders .border-container {
-   
     align-items: center;
     padding-top: 10px;
     padding-left: 9px;
@@ -352,14 +363,7 @@ body.dark-mode {
     box-shadow: 0px 0px 4px 1px rgba(0, 0, 0, 0.10);
   }
   
-  .go-back-button {
-    position: absolute;
-    left: 110px;
-    top: 150px;
-    background: #fff;
-    color: #111517;
-    cursor: pointer;     
-  }
+ 
   
   .dark-mode {
     background-color: #202c37;
@@ -369,13 +373,10 @@ body.dark-mode {
     background-color: #202c37;
   }
   
-  .dark-mode .go-back-button {
-   
-    background-image: none;
-    background-color: transparent; /* Set the background color in dark mode */
-    filter: invert(100%) brightness(1);
-  }
-  
+/* For the button */
+/* For the button */
+
+
   .dark-mode {
     background: #202c37;
     color: #fff;
@@ -383,7 +384,7 @@ body.dark-mode {
   
   body.dark-mode {
     background: #202c37;
-    color: #fff;
+   
   }
   
   .country-text.dark-mode {

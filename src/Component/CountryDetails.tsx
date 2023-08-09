@@ -1,6 +1,6 @@
 import React from 'react';
 import './CountryDetails.css';
-import BackImage from './BACK.svg'; // Correct the import for the BACK.svg image
+import { FaArrowLeft } from 'react-icons/fa'; // Import the arrow icon from a library
 
 export interface Country {
   name: string;
@@ -59,12 +59,14 @@ const CountryDetails: React.FC<CountryDetailsProps> = (props) => {
     });
   };
 
-  // Define arrow functions to conditionally apply styles based on darkMode
-  const backButtonStyle = () => ({
-    background: darkMode ? '#202c37' : '', // Set background color in dark mode
-    color: darkMode ? '#fff' : '', // Set text color in dark mode
-   
-  });
+  const backButtonStyle = () => {
+    console.log('backButtonStyle is being called'); // Add this line
+    return {
+      background: darkMode ? '#202c37' : '',
+      color: darkMode ? '#fff' : '',
+    };
+  };
+  
 
   const countryTextStyle = () => ({
     background: darkMode ? '#202c37' : '', // Set background color in dark mode
@@ -76,14 +78,14 @@ const CountryDetails: React.FC<CountryDetailsProps> = (props) => {
 
   return (
     <div className={`country-details-container ${darkModeClass}`}>
-      {/* Use the BackImage variable for the BACK.svg image */}
-      <img
-        src={BackImage}
-        alt="Back Arrow"
-        className="go-back-button"
-        onClick={goBackToCountryList}
-        style={backButtonStyle()} // Apply the arrow function to the style attribute
-      />
+       <button
+    className={`go-back-button ${darkModeClass}`}
+    onClick={goBackToCountryList}
+    style={backButtonStyle()} // Apply the style using the function
+  >
+    <FaArrowLeft className="arrow-icon" />
+    <span className="button-text">Back</span>
+    </button>
 
       <img src={flags.svg} alt={`Flag of ${name}`} className="flag" />
       <div className="country-text" style={countryTextStyle()}>
@@ -96,16 +98,14 @@ const CountryDetails: React.FC<CountryDetailsProps> = (props) => {
           <p> <h4> Capital:</h4> </p> <p className='capital'> {capital}</p>
         </div>
         <div className="country-text2">
-           <h4> Top Level Domain:</h4> <p className='toplevel'> {topLevelDomain.join(', ')}</p>
-          
+          <h4> Top Level Domain:</h4> <p className='toplevel'> {topLevelDomain.join(', ')}</p>
           <h4> Currencies:</h4> <p className='currencies'> {' '} {currencies.map((currency) => `${currency.name} (${currency.code}, ${currency.symbol})`)} {' '} </p>
-          
           <h4> Languages:</h4> <p className='language'> {languages.map((language) => `${language.name} (${language.nativeName})`)}</p>
-         </div>
+        </div>
 
-         <h4 className='borders-countries'>Borders Countries:</h4>
+        <h4 className='borders-countries'>Borders Countries:</h4>
         <p className="borders">
-         {' '}
+          {' '}
           {borders.length > 0 ? (
             borders.map((border, index) => (
               <div key={index} className="border-container">

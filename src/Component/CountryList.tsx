@@ -5,8 +5,6 @@ import CountryDetails, { Country } from './CountryDetails';
 import MoonImage from './moonImage.svg';
 import searchImage from './searchImage copy.svg';
 
-
-
 const CountryList: React.FC = () => {
   const [countries, setCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -15,6 +13,7 @@ const CountryList: React.FC = () => {
   const [selectedCountry, setSelectedCountry] = useState<Country | null>(null);
   const [showCountryDetails, setShowCountryDetails] = useState<boolean>(false);
   const [darkMode, setDarkMode] = useState<boolean>(false);
+  const [showDropdown, setShowDropdown] = useState<boolean>(false);
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -65,6 +64,10 @@ const CountryList: React.FC = () => {
     setSelectedRegion(event.target.value);
   };
 
+  const handleToggleDropdown = () => {
+    setShowDropdown((prevShowDropdown) => !prevShowDropdown);
+  };
+
   const handleToggleDarkMode = () => {
     setDarkMode((prevDarkMode) => !prevDarkMode);
   };
@@ -97,27 +100,38 @@ const CountryList: React.FC = () => {
 
       {!showCountryDetails && (
         <>
-          <div className="search-container">
-            <div className="search-icon" onClick={handleSearchIconClick}>
-              <img src={searchImage} alt="Search Icon" />
-            </div>
-            <input
-              type="text"
-              placeholder="Search country..."
-              value={searchQuery}
-              onChange={handleSearchChange}
-              className="search-input"
-            />
-          </div>
+<div className={`search-container ${darkMode ? 'dark-mode' : ''}`}>
+  <div className={`search-icon ${darkMode ? 'dark-icon' : ''}`} onClick={handleSearchIconClick}>
+    <img src={searchImage} alt="Search Icon" />
+  </div>
+  <input
+    type="text"
+    value={searchQuery}
+    onChange={handleSearchChange}
+    className={`search-input ${darkMode ? 'dark-input' : ''}`}
+  />
+  <span className={`search-placeholder ${darkMode ? 'dark-placeholder' : ''}`}>
+    {searchQuery ? '' : 'Search country...'}
+  </span>
+</div>
 
-          <select value={selectedRegion} onChange={handleRegionSelection} className="sort-input">
-            <option value="">Filter by Region</option>
-            <option value="africa">Africa</option>
-            <option value="americas">Americas</option>
-            <option value="asia">Asia</option>
-            <option value="europe">Europe</option>
-            <option value="oceania">Oceania</option>
-          </select>
+
+           <div className="custom-dropdown">
+             <div className="dropdown-toggle" onClick={handleToggleDropdown}>
+                <span className='filter'> Filter by Region</span>
+            <div className={`arrow-icons ${showDropdown ? 'open' : ''}`}>&#8744;</div> {/* Downward pointing arrow */}
+          </div>
+            {showDropdown && (
+              <div className="dropdown-options">
+                <div className="option" onClick={() => setSelectedRegion('')}>All Regions</div>
+                <div className="option" onClick={() => setSelectedRegion('africa')}>Africa</div>
+                <div className="option" onClick={() => setSelectedRegion('americas')}>Americas</div>
+                <div className="option" onClick={() => setSelectedRegion('asia')}>Asia</div>
+                <div className="option" onClick={() => setSelectedRegion('europe')}>Europe</div>
+                <div className="option" onClick={() => setSelectedRegion('oceania')}>Oceania</div>
+              </div>
+            )}
+          </div>
         </>
       )}
 
@@ -141,18 +155,17 @@ const CountryList: React.FC = () => {
                 alt={`Flag of ${country.name}`}
                 className="flag-image"
               />
-               <h3>{country.name || 'Unknown Country'}</h3>
-  <p>
-    <strong>Capital:</strong> {country.capital}
-  </p>
-  <p>
-    <strong>Population:</strong> {country.population}
-  </p>
-  <p>
-    <strong>Region:</strong> {country.region}
-  </p>
+              <h3>{country.name || 'Unknown Country'}</h3>
+              <p>
+                <strong>Capital:</strong> {country.capital}
+              </p>
+              <p>
+                <strong>Population:</strong> {country.population}
+              </p>
+              <p>
+                <strong>Region:</strong> {country.region}
+              </p>
               <hr />
-
             </div>
           ))}
         </div>
