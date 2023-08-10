@@ -24,7 +24,7 @@
   .navbar p {
     position: absolute;
     top:-5px;
-    left: 100px;
+    left: 140px;
   } 
 
   ul {
@@ -162,7 +162,7 @@ body.dark-mode {
   border: none;
   border-radius: 4px;
   background-color: #fff;
-  color: #111517;
+  color: #848484;
   top: 130px;
   width: 300px;
   height: 46px;
@@ -242,10 +242,10 @@ body.dark-mode {
 
 .navbar p {
   position: absolute;
-  width: 135px;
+  width: 137px;
   height: 20px;
   top:15px;
-  left: 20px;
+  left: 10px;
  
   font-family: Nunito Sans;
   font-size: 14px;

@@ -91,7 +91,7 @@ const CountryList: React.FC = () => {
   return (
     <div className={darkMode ? 'dark-mode' : ''}>
       <div className={`navbar ${darkMode ? 'dark-mode' : ''}`}>
-        <p>Where in the world</p>
+        <p>Where in the world ?</p>
         <ul onClick={handleToggleDarkMode}>
           Dark Mode
           <img src={MoonImage} alt="Moon Icon" className={`moon-image ${darkMode ? 'dark-mode' : ''}`} />
