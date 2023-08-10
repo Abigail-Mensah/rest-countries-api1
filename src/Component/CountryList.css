@@ -45,7 +45,7 @@
   position: relative;
   width: 200px;
   top: 110px;
-  left: 1172px;
+  left: 1192px;
   height: 56px;
   flex-shrink: 0;
   cursor: pointer;
@@ -86,8 +86,8 @@
   position: relative;
   display: grid;
   top: 150px;
-  grid-template-columns: repeat(4, 1fr); /* Four equal-width columns */
-  gap: 50px; /* Add some space between grid items */
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px; 
   grid-column-gap: 1px;
   margin-left: 140px;
   margin-right: 90px;
