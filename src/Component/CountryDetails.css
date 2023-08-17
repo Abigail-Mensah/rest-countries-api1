@@ -13,7 +13,7 @@ button {
   border: none;
   padding: 10px 20px;
   top: 130px;
-  left:110px;
+  left:120px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -38,7 +38,7 @@ button {
   position: absolute;
   width: 559.715px;
   height: 483.169px;
-  left: 105px;
+  left: 1255px;
   top:250px;
 }
 
