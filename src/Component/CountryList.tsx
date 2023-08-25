@@ -88,6 +88,14 @@ const CountryList: React.FC = () => {
     setShowCountryDetails(false);
   };
 
+  const handleBorderCountryClick = (borderCountry: string) => {
+    const selectedBorderCountry = countries.find((country) => country.name === borderCountry);
+    if (selectedBorderCountry) {
+      setSelectedCountry(selectedBorderCountry);
+      setShowCountryDetails(true);
+    }
+  };
+
   return (
     <div className={darkMode ? 'dark-mode' : ''}>
       <div className={`navbar ${darkMode ? 'dark-mode' : ''}`}>
@@ -100,27 +108,26 @@ const CountryList: React.FC = () => {
 
       {!showCountryDetails && (
         <>
-<div className={`search-container ${darkMode ? 'dark-mode' : ''}`}>
-  <div className={`search-icon ${darkMode ? 'dark-icon' : ''}`} onClick={handleSearchIconClick}>
-    <img src={searchImage} alt="Search Icon" />
-  </div>
-  <input
-    type="text"
-    value={searchQuery}
-    onChange={handleSearchChange}
-    className={`search-input ${darkMode ? 'dark-input' : ''}`}
-  />
-  <span className={`search-placeholder ${darkMode ? 'dark-placeholder' : ''}`}>
-    {searchQuery ? '' : 'Search country...'}
-  </span>
-</div>
-
-
-           <div className="custom-dropdown">
-             <div className="dropdown-toggle" onClick={handleToggleDropdown}>
-                <span className='filter'> Filter by Region</span>
-            <div className={`arrow-icons ${showDropdown ? 'open' : ''}`}>&#8744;</div> {/* Downward pointing arrow */}
+          <div className={`search-container ${darkMode ? 'dark-mode' : ''}`}>
+            <div className={`search-icon ${darkMode ? 'dark-icon' : ''}`} onClick={handleSearchIconClick}>
+              <img src={searchImage} alt="Search Icon" />
+            </div>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={handleSearchChange}
+              className={`search-input ${darkMode ? 'dark-input' : ''}`}
+            />
+            <span className={`search-placeholder ${darkMode ? 'dark-placeholder' : ''}`}>
+              {searchQuery ? '' : 'Search country...'}
+            </span>
           </div>
+
+          <div className="custom-dropdown">
+            <div className="dropdown-toggle" onClick={handleToggleDropdown}>
+              <span className='filter'> Filter by Region</span>
+              <div className={`arrow-icons ${showDropdown ? 'open' : ''}`}>&#8744;</div> {/* Downward pointing arrow */}
+            </div>
             {showDropdown && (
               <div className="dropdown-options">
                 <div className="option" onClick={() => setSelectedRegion('')}>All Regions</div>
@@ -137,10 +144,21 @@ const CountryList: React.FC = () => {
 
       {showCountryDetails ? (
         <CountryDetails 
-          {...selectedCountry!}
-          countries={countries}
+          name={selectedCountry!.name}
+          nativeName={selectedCountry!.nativeName}
+          population={selectedCountry!.population}
+          region={selectedCountry!.region}
+          subregion={selectedCountry!.subregion}
+          capital={selectedCountry!.capital}
+          topLevelDomain={selectedCountry!.topLevelDomain}
+          currencies={selectedCountry!.currencies}
+          languages={selectedCountry!.languages}
+          flags={selectedCountry!.flags}
+          borders={selectedCountry!.borders}
           darkMode={darkMode}
-          goBackToCountryList={handleGoBackToCountryList} 
+          goBackToCountryList={handleGoBackToCountryList}
+          countries={countries}
+          handleBorderCountryClick={handleBorderCountryClick}
         />
       ) : (
         <div className="grid-container">
